@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "Social/Social.h"
 
 @interface ViewController ()
 @property (weak, nonatomic) IBOutlet UITextView *tweetTextField;
@@ -26,7 +27,43 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(void) showAlertMessage: (NSString *) myMessage {
+    UIAlertController *alertController;
+    alertController = [UIAlertController alertControllerWithTitle:@"TwitterShare" message:myMessage preferredStyle:UIAlertControllerStyleAlert];
+    [alertController addAction:[UIAlertAction actionWithTitle:@"Okay" style:UIAlertActionStyleDefault handler:nil]];
+    [self presentViewController:alertController animated:YES completion:nil];
+}
+
 - (IBAction)showShareAction:(id)sender {
+    if ([self.tweetTextField isFirstResponder]) {
+        [self.tweetTextField resignFirstResponder];
+    }
+    UIAlertController *actionController = [UIAlertController alertControllerWithTitle:@"" message:@"Tweet your note" preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault handler:nil];
+    
+    UIAlertAction *tweetAction = [UIAlertAction actionWithTitle:@"Tweet" style:UIAlertActionStyleDefault handler:
+                                  ^(UIAlertAction *action){
+        if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter]) {
+            SLComposeViewController *twitterVC = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter];
+            
+            // Tweet out the tweet
+            if ([self.tweetTextField.text length] < 140) {
+                [twitterVC setInitialText: self.tweetTextField.text];
+            }else {
+                NSString *shortText = [self.tweetTextField.text substringToIndex:140];
+                [twitterVC setInitialText:shortText];
+            }
+            [self presentViewController:twitterVC animated: YES completion: nil];
+        }else {
+            // Raise some kind of objection
+            [self showAlertMessage:@"Please sign in to before you tweet"];
+        }
+        }];
+    [actionController addAction:tweetAction];
+    [actionController addAction:cancelAction];
+    
+    [self presentViewController:actionController animated:YES completion:nil];
     
 }
 

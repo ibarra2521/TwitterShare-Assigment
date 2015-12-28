@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		41808D211C31D71E003E634B /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41808D201C31D71E003E634B /* Social.framework */; };
 		419C15171C31CFC500F23B91 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 419C15161C31CFC500F23B91 /* main.m */; };
 		419C151A1C31CFC500F23B91 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 419C15191C31CFC500F23B91 /* AppDelegate.m */; };
 		419C151D1C31CFC500F23B91 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 419C151C1C31CFC500F23B91 /* ViewController.m */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		41808D201C31D71E003E634B /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		419C15121C31CFC500F23B91 /* TwitterShare.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TwitterShare.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		419C15161C31CFC500F23B91 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		419C15181C31CFC500F23B91 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -33,17 +35,27 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				41808D211C31D71E003E634B /* Social.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		41808D221C31D727003E634B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				41808D201C31D71E003E634B /* Social.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		419C15091C31CFC500F23B91 = {
 			isa = PBXGroup;
 			children = (
 				419C15141C31CFC500F23B91 /* TwitterShare */,
 				419C15131C31CFC500F23B91 /* Products */,
+				41808D221C31D727003E634B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -303,6 +315,7 @@
 				419C152B1C31CFC600F23B91 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
