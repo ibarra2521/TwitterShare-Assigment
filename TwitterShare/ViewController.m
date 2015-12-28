@@ -29,7 +29,7 @@
 
 -(void) showAlertMessage: (NSString *) myMessage {
     UIAlertController *alertController;
-    alertController = [UIAlertController alertControllerWithTitle:@"TwitterShare" message:myMessage preferredStyle:UIAlertControllerStyleAlert];
+    alertController = [UIAlertController alertControllerWithTitle:@"SocialShare" message:myMessage preferredStyle:UIAlertControllerStyleAlert];
     [alertController addAction:[UIAlertAction actionWithTitle:@"Okay" style:UIAlertActionStyleDefault handler:nil]];
     [self presentViewController:alertController animated:YES completion:nil];
 }
@@ -38,7 +38,7 @@
     if ([self.tweetTextField isFirstResponder]) {
         [self.tweetTextField resignFirstResponder];
     }
-    UIAlertController *actionController = [UIAlertController alertControllerWithTitle:@"" message:@"Tweet your note" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController *actionController = [UIAlertController alertControllerWithTitle:@"Share" message:@"" preferredStyle:UIAlertControllerStyleAlert];
     
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault handler:nil];
     
@@ -60,7 +60,18 @@
             [self showAlertMessage:@"Please sign in to before you tweet"];
         }
         }];
+    UIAlertAction *facebookAction = [UIAlertAction actionWithTitle:@"Post to Facebook" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
+        if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook]) {
+            SLComposeViewController *facebookVC = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeFacebook];
+            [facebookVC setInitialText:self.tweetTextField.text];
+            [self presentViewController:facebookVC animated:YES completion:nil];
+        }else {
+            [self showAlertMessage:@"You sign in to Facebook"];
+        }
+    }];
+    
     [actionController addAction:tweetAction];
+    [actionController addAction:facebookAction];
     [actionController addAction:cancelAction];
     
     [self presentViewController:actionController animated:YES completion:nil];
