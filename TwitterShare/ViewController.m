@@ -69,9 +69,15 @@
             [self showAlertMessage:@"You sign in to Facebook"];
         }
     }];
-    
+
+    UIAlertAction *moreAction = [UIAlertAction actionWithTitle:@"More" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
+        UIActivityViewController *moreVC = [[UIActivityViewController alloc ]initWithActivityItems:@[self.tweetTextField.text] applicationActivities:nil];
+        [self presentViewController:moreVC animated:YES completion: nil];
+    }];
+
     [actionController addAction:tweetAction];
     [actionController addAction:facebookAction];
+    [actionController addAction:moreAction];
     [actionController addAction:cancelAction];
     
     [self presentViewController:actionController animated:YES completion:nil];
