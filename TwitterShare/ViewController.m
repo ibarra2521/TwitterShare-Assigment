@@ -11,6 +11,10 @@
 
 @interface ViewController ()
 @property (weak, nonatomic) IBOutlet UITextView *tweetTextField;
+@property (weak, nonatomic) IBOutlet UITextView *postTextField;
+@property (weak, nonatomic) IBOutlet UITextView *moreTextField;
+
+
 - (void) configureTweetTextView;
 @end
 
@@ -20,6 +24,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     [self configureTweetTextView];
+    [self configurePostTextView];
+    [self configureMoreTextView];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -38,57 +44,70 @@
     if ([self.tweetTextField isFirstResponder]) {
         [self.tweetTextField resignFirstResponder];
     }
-    UIAlertController *actionController = [UIAlertController alertControllerWithTitle:@"Share" message:@"" preferredStyle:UIAlertControllerStyleAlert];
     
-    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault handler:nil];
-    
-    UIAlertAction *tweetAction = [UIAlertAction actionWithTitle:@"Tweet" style:UIAlertActionStyleDefault handler:
-                                  ^(UIAlertAction *action){
-        if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter]) {
-            SLComposeViewController *twitterVC = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter];
-            
-            // Tweet out the tweet
-            if ([self.tweetTextField.text length] < 140) {
-                [twitterVC setInitialText: self.tweetTextField.text];
-            }else {
-                NSString *shortText = [self.tweetTextField.text substringToIndex:140];
-                [twitterVC setInitialText:shortText];
-            }
-            [self presentViewController:twitterVC animated: YES completion: nil];
+    if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter]) {
+        SLComposeViewController *twitterVC = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter];
+        
+        // Tweet out the tweet
+        if ([self.tweetTextField.text length] < 140) {
+            [twitterVC setInitialText: self.tweetTextField.text];
         }else {
-            // Raise some kind of objection
-            [self showAlertMessage:@"Please sign in to before you tweet"];
+            NSString *shortText = [self.tweetTextField.text substringToIndex:140];
+            [twitterVC setInitialText:shortText];
         }
-        }];
-    UIAlertAction *facebookAction = [UIAlertAction actionWithTitle:@"Post to Facebook" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
-        if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook]) {
-            SLComposeViewController *facebookVC = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeFacebook];
-            [facebookVC setInitialText:self.tweetTextField.text];
-            [self presentViewController:facebookVC animated:YES completion:nil];
-        }else {
-            [self showAlertMessage:@"You sign in to Facebook"];
-        }
-    }];
-
-    UIAlertAction *moreAction = [UIAlertAction actionWithTitle:@"More" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
-        UIActivityViewController *moreVC = [[UIActivityViewController alloc ]initWithActivityItems:@[self.tweetTextField.text] applicationActivities:nil];
-        [self presentViewController:moreVC animated:YES completion: nil];
-    }];
-
-    [actionController addAction:tweetAction];
-    [actionController addAction:facebookAction];
-    [actionController addAction:moreAction];
-    [actionController addAction:cancelAction];
-    
-    [self presentViewController:actionController animated:YES completion:nil];
-    
+        [self presentViewController:twitterVC animated: YES completion: nil];
+    }else {
+        // Raise some kind of objection
+        [self showAlertMessage:@"Please sign in to before you tweet"];
+    }
 }
 
 - (void) configureTweetTextView {
     self.tweetTextField.layer.backgroundColor = [UIColor colorWithRed:1.0 green:1.0 blue:0.9 alpha:1.0].CGColor;
-    self.tweetTextField.layer.cornerRadius = 10.0;
+    self.tweetTextField.layer.cornerRadius = 20.0;
     self.tweetTextField.layer.borderColor = [UIColor colorWithWhite:0.0 alpha:0.5].CGColor;
     self.tweetTextField.layer.borderWidth = 2.0;
+}
+
+- (void) configurePostTextView {
+    self.postTextField.layer.backgroundColor = [UIColor colorWithRed:0.5 green:1.0 blue:1.0 alpha:1.0].CGColor;
+    self.postTextField.layer.cornerRadius = 20.0;
+    self.postTextField.layer.borderColor = [UIColor colorWithWhite:0.0 alpha:0.5].CGColor;
+    self.postTextField.layer.borderWidth = 2.0;
+}
+
+- (void) configureMoreTextView {
+    self.moreTextField.layer.backgroundColor = [UIColor colorWithRed:0.8 green:0.4 blue:1.0 alpha:1.0].CGColor;
+    self.moreTextField.layer.cornerRadius = 20.0;
+    self.moreTextField.layer.borderColor = [UIColor colorWithWhite:0.0 alpha:0.5].CGColor;
+    self.moreTextField.layer.borderWidth = 2.0;
+}
+
+- (IBAction)showShareFacebookAction:(id)sender {
+    if ([self.postTextField isFirstResponder]) {
+        [self.postTextField resignFirstResponder];
+    }
+
+    if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook]) {
+        SLComposeViewController *facebookVC = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeFacebook];
+        [facebookVC setInitialText:self.postTextField.text];
+        [self presentViewController:facebookVC animated:YES completion:nil];
+    }else {
+        [self showAlertMessage:@"You sign in to Facebook"];
+    }
+}
+
+- (IBAction)showShareMoreAction:(id)sender {
+    if ([self.moreTextField isFirstResponder]) {
+        [self.moreTextField resignFirstResponder];
+    }
+
+    UIActivityViewController *moreVC = [[UIActivityViewController alloc ]initWithActivityItems:@[self.moreTextField.text] applicationActivities:nil];
+    [self presentViewController:moreVC animated:YES completion: nil];
+}
+
+- (IBAction)anyAction:(id)sender {
+    [self showAlertMessage:@"Any action :) !!!"];
 }
 
 @end

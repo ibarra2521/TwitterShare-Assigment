@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lno-8O-UTI">
-                                <rect key="frame" x="-4" y="20" width="328" height="44"/>
+                                <rect key="frame" x="-8" y="20" width="336" height="44"/>
                                 <items>
                                     <barButtonItem title="Item" systemItem="action" id="Nhs-ch-eH8">
                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -27,29 +27,72 @@
                                             <action selector="showShareAction:" destination="BYZ-38-t0r" id="HRS-0r-jGS"/>
                                         </connections>
                                     </barButtonItem>
+                                    <barButtonItem systemItem="action" id="Fte-8c-ZC7">
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <action selector="showShareFacebookAction:" destination="BYZ-38-t0r" id="JDL-4N-yba"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem systemItem="action" id="XHn-K4-aPi">
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <action selector="showShareMoreAction:" destination="BYZ-38-t0r" id="Tsr-EG-hbd"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem systemItem="action" id="hXr-73-QbM">
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <action selector="anyAction:" destination="BYZ-38-t0r" id="fZu-bX-wK8"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
                                 <color key="barTintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </toolbar>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="m2V-TF-R6a">
-                                <rect key="frame" x="-4" y="64" width="328" height="504"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Tweet Tweet Tweet Tweet Tweet Tweet Tweet Tweet Tweet Tweet Tweet Tweet Tweet Tweet Tweet Tweet Tweet Tweet Tweet Tweet Tweet " textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="m2V-TF-R6a">
+                                <rect key="frame" x="1" y="56" width="318" height="177"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="177" id="Wc3-Zm-cHa"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="More More More More More More More More More More More More More More More More More " textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="DKD-oO-oFH">
+                                <rect key="frame" x="1" y="424" width="318" height="144"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Post facebook Post facebook Post facebook Post facebook Post facebook Post facebook Post facebook Post facebook Post facebook " textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="bha-QA-1ZW">
+                                <rect key="frame" x="1" y="237" width="318" height="184"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="184" id="5Ag-bf-BR2"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.98201876878738403" green="0.43868771195411682" blue="0.032821681350469589" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="lno-8O-UTI" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="9S4-dc-C4n"/>
-                            <constraint firstItem="m2V-TF-R6a" firstAttribute="top" secondItem="lno-8O-UTI" secondAttribute="bottom" id="CUZ-n3-wak"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="m2V-TF-R6a" secondAttribute="bottom" id="D0v-Tp-jKP"/>
-                            <constraint firstItem="m2V-TF-R6a" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="EXe-CT-0rv"/>
-                            <constraint firstItem="lno-8O-UTI" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="Puk-of-8Qz"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="lno-8O-UTI" secondAttribute="trailing" constant="-20" id="RBv-PC-864"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="m2V-TF-R6a" secondAttribute="trailing" constant="-20" id="hLH-0C-XpP"/>
+                            <constraint firstItem="bha-QA-1ZW" firstAttribute="top" secondItem="m2V-TF-R6a" secondAttribute="bottom" constant="4" id="2eG-Mk-EXv"/>
+                            <constraint firstItem="DKD-oO-oFH" firstAttribute="top" secondItem="bha-QA-1ZW" secondAttribute="bottom" constant="3" id="9xe-qt-w4s"/>
+                            <constraint firstItem="m2V-TF-R6a" firstAttribute="leading" secondItem="DKD-oO-oFH" secondAttribute="leading" id="IVA-it-sog"/>
+                            <constraint firstItem="lno-8O-UTI" firstAttribute="centerX" secondItem="bha-QA-1ZW" secondAttribute="centerX" id="Lnb-PA-ECY"/>
+                            <constraint firstItem="m2V-TF-R6a" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="36" id="O7y-ei-B77"/>
+                            <constraint firstItem="m2V-TF-R6a" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-15" id="O8R-LN-kGr"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="lno-8O-UTI" secondAttribute="trailing" constant="-24" id="SbG-tw-r2s"/>
+                            <constraint firstItem="lno-8O-UTI" firstAttribute="centerX" secondItem="DKD-oO-oFH" secondAttribute="centerX" id="ic8-ea-NoR"/>
+                            <constraint firstItem="lno-8O-UTI" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="rM2-1U-8zE"/>
+                            <constraint firstItem="lno-8O-UTI" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-24" id="tIT-mc-PEP"/>
+                            <constraint firstItem="lno-8O-UTI" firstAttribute="centerX" secondItem="m2V-TF-R6a" secondAttribute="centerX" id="tr8-iv-yDA"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="DKD-oO-oFH" secondAttribute="bottom" id="uTb-EN-b6M"/>
+                            <constraint firstItem="m2V-TF-R6a" firstAttribute="leading" secondItem="bha-QA-1ZW" secondAttribute="leading" id="xed-Pf-W9Q"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="moreTextField" destination="DKD-oO-oFH" id="u34-FJ-g3u"/>
+                        <outlet property="postTextField" destination="bha-QA-1ZW" id="y98-3s-qK7"/>
                         <outlet property="tweetTextField" destination="m2V-TF-R6a" id="fV5-uq-eeR"/>
                     </connections>
                 </viewController>
